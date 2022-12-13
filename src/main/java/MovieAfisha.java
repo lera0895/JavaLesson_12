@@ -1,47 +1,39 @@
 public class MovieAfisha {
-    private String[] movies = new String[0];
-    private  int limit;
+    private MyPosters[] myArrayPosters = new MyPosters[0];
+    private int countOut = 10;
 
-    public MovieAfisha (){
-        limit = 3;
+    public MovieAfisha() {
     }
 
-    public MovieAfisha(int limit) {
-        this.limit = limit;
-    }
-
-    public void add (String movie) {
-        String [] tmp = new String[movies.length+1];
-        for (int i = 0; i < movies.length; i++) {
-            tmp[i]= movies [i];
-            
+    public MovieAfisha(int myCount) {
+        if (myCount > 0) {
+            this.countOut = myCount;
         }
-        tmp [tmp.length - 1] = movie;
-        movies = tmp;
     }
 
-    public String [] findAll() {
-        return  movies;
+    public void add(MyPosters item){
+        MyPosters[] temp = new MyPosters[myArrayPosters.length + 1];
+        System.arraycopy(myArrayPosters, 0, temp, 0, myArrayPosters.length);
+        temp[temp.length - 1] = item;
+        myArrayPosters = temp;
+    }
+
+    public MyPosters[] findall() {
+        return myArrayPosters;
 
     }
 
-    public String [] findLast() {
-        int length;
-        if (movies.length <limit){
-            length = movies.length;
-
-
-        } else  {
-            length = limit;
+    public MyPosters[] findLast(){
+        int myCountOut = 0;
+        if (myArrayPosters.length < countOut) {
+            myCountOut = myArrayPosters.length;
+        } else {
+            myCountOut = countOut;
         }
-        String[] tmp = new String[length];
-        for (int i = 0; i < tmp.length; i++) {
-            tmp[i] = movies[movies.length - 1 - i];
-            
+        MyPosters[] temp = new MyPosters[myCountOut];
+        for (int i = 0; i < myCountOut; i++) {
+            temp[i] = myArrayPosters[myArrayPosters.length - 1 - i];
         }
-        return tmp;
-
+        return temp;
     }
-
-
 }
